@@ -7,4 +7,6 @@
     <string name="tweet_hint">Waz up?</string>
     <string name="tweet_submit">Submit</string>
 
+    <string name="tweet_succeeded">Tweet sent!</string>
+
 </resources>
