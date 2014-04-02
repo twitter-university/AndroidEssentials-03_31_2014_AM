@@ -1,6 +1,7 @@
 package com.twitter.university.android.yamba;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.content.res.Resources;
 import android.os.Bundle;
 import android.text.Editable;
@@ -10,8 +11,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
-
-import com.twitter.university.android.yamba.svc.YambaService;
 
 
 // If mutable data is accessed from more than one thread
@@ -92,7 +91,10 @@ public class TweetActivity extends Activity {
         tweetView.setText("");
         submitButton.setEnabled(false);
 
-        YambaService.post(this, tweet);
+        Intent i = new Intent(YambaContract.Service.ACTION_EXECUTE);
+        i.putExtra(YambaContract.Service.PARAM_OP, YambaContract.Service.OP_POST);
+        i.putExtra(YambaContract.Service.PARAM_TWEET, tweet);
+        startService(i);
     }
 
     private boolean checkTweetLen(int n) {
