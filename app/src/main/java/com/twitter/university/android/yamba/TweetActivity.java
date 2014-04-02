@@ -1,9 +1,7 @@
 package com.twitter.university.android.yamba;
 
 import android.app.Activity;
-import android.content.Context;
 import android.content.res.Resources;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -12,39 +10,15 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
+
+import com.twitter.university.android.yamba.svc.YambaService;
+
 
 // If mutable data is accessed from more than one thread
 // all access must be performed holding a single lock
 
-
 public class TweetActivity extends Activity {
     private static final String TAG = "TWEET";
-
-    static class Poster extends AsyncTask<String, Void, Integer> {
-        private Context ctxt;
-        Poster(Context ctxt) { this.ctxt = ctxt; }
-
-        // PRETEND TO SEND ON THE NETWORK
-
-        @Override
-        protected Integer doInBackground(String... strings) {
-            String tweet = strings[0];
-
-            try { Thread.sleep(1000 * 30); }
-            catch (InterruptedException e) { }
-
-            return Integer.valueOf(R.string.tweet_succeeded);
-        }
-
-        @Override
-        protected void onPostExecute(Integer status) {
-            poster = null;
-            Toast.makeText(ctxt, status.intValue(), Toast.LENGTH_LONG).show();
-        }
-    }
-
-    static Poster poster;
 
     private int okColor;
     private int warnColor;
@@ -112,16 +86,13 @@ public class TweetActivity extends Activity {
     }
 
     void post() {
-        if (null != poster) { return; }
-
         String tweet = tweetView.getText().toString();
         if (!checkTweetLen(tweet.length())) { return; }
 
         tweetView.setText("");
         submitButton.setEnabled(false);
 
-        poster = new Poster(getApplicationContext());
-        poster.execute(tweet);
+        YambaService.post(this, tweet);
     }
 
     private boolean checkTweetLen(int n) {
