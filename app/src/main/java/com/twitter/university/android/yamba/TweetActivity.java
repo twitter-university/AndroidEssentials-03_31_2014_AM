@@ -16,7 +16,7 @@ import android.widget.TextView;
 // If mutable data is accessed from more than one thread
 // all access must be performed holding a single lock
 
-public class TweetActivity extends Activity {
+public class TweetActivity extends YambaActivity {
     private static final String TAG = "TWEET";
 
     private int okColor;
@@ -35,7 +35,6 @@ public class TweetActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tweet);
-        Log.d(TAG, "onCreate: " + this);
 
         Resources rez = getResources();
         okColor = rez.getColor(R.color.ok);
