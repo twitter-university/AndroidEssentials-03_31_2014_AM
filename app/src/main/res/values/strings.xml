@@ -9,5 +9,7 @@
     <string name="title_activity_timeline">Timeline</string>
     <string name="menu_timeline">Timeline</string>
     <string name="menu_tweet">Tweet</string>
+    <string name="menu_about">About</string>
+    <string name="about_yamba">Yamba @Twitter\n    brought to you by the BBC</string>
 
 </resources>

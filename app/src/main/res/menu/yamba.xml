@@ -9,4 +9,8 @@
     <item android:id="@+id/menu_tweet"
           android:title="@string/menu_tweet"
           android:showAsAction="withText|ifRoom" />
+
+    <item android:id="@+id/menu_about"
+          android:title="@string/menu_about"
+          android:showAsAction="never" />
 </menu>

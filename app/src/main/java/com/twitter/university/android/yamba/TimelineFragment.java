@@ -13,26 +13,23 @@ import android.view.ViewGroup;
 import android.widget.SimpleCursorAdapter;
 import android.widget.TextView;
 
-/**
- * Created by bmeike on 4/3/14.
- */
-public class TimelineFragment
-        extends ListFragment
-        implements LoaderManager.LoaderCallbacks<Cursor>
-{
 
+public class TimelineFragment
+    extends ListFragment
+    implements LoaderManager.LoaderCallbacks<Cursor>
+{
     private static final int TIMELINE_LOADER = 42;
 
     private static final String[] FROM = new String[] {
-            YambaContract.Timeline.Columns.HANDLE,
-            YambaContract.Timeline.Columns.TIMESTAMP,
-            YambaContract.Timeline.Columns.TWEET
+        YambaContract.Timeline.Columns.HANDLE,
+        YambaContract.Timeline.Columns.TIMESTAMP,
+        YambaContract.Timeline.Columns.TWEET
     };
 
     private static final int[] TO = new int[] {
-            R.id.timeline_row_handle,
-            R.id.timeline_row_time,
-            R.id.timeline_row_tweet
+        R.id.timeline_row_handle,
+        R.id.timeline_row_time,
+        R.id.timeline_row_tweet
     };
 
     static class TimelineBinder implements SimpleCursorAdapter.ViewBinder {
@@ -52,12 +49,12 @@ public class TimelineFragment
     @Override
     public Loader<Cursor> onCreateLoader(int i, Bundle bundle) {
         return new CursorLoader(
-                getActivity(),
-                YambaContract.Timeline.URI,
-                null,
-                null,
-                null,
-                YambaContract.Timeline.Columns.TIMESTAMP + " DESC");
+            getActivity(),
+            YambaContract.Timeline.URI,
+            null,
+            null,
+            null,
+            YambaContract.Timeline.Columns.TIMESTAMP + " DESC");
     }
 
     @Override
@@ -72,7 +69,6 @@ public class TimelineFragment
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle state) {
-
         View v = super.onCreateView(inflater, container, state);
 
         SimpleCursorAdapter adapter

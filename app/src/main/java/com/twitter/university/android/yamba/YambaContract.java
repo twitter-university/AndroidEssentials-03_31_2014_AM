@@ -38,11 +38,11 @@ public class YambaContract {
         public static final String PARAM_TWEET
             = "com.twitter.university.android.yamba.service.TWEET";
 
-        // Yamba Service yamba updated broadcast
+        // Yamba Service timeline updated broadcast
         public static final String ACTION_TIMELINE_UPDATED
             = "com.twitter.university.android.yamba.service.action.TIMELINE_UPDATED";
 
-        // Permission required to receive the yamba updated broadcast
+        // Permission required to receive the timeline updated broadcast
         public static final String PERMISSION_RECEIVE_TIMELINE_UPDATE
             = "com.twitter.university.android.yamba.service.permission.RECEIVE_TIMELINE_UPDATED";
 
@@ -63,7 +63,7 @@ public class YambaContract {
             = "com.twitter.university.android.yamba.action.NEW_TWEET_COUNT";
     }
 
-    public static final String AUTHORITY = "com.twitter.university.android.yamba.yamba";
+    public static final String AUTHORITY = "com.twitter.university.android.yamba.timeline";
 
     public static final Uri BASE_URI = new Uri.Builder()
         .scheme(ContentResolver.SCHEME_CONTENT)
@@ -71,14 +71,14 @@ public class YambaContract {
         .build();
 
     public static final String PERMISSION_READ
-        = "com.twitter.university.android.yamba.yamba.permission.READ";
+        = "com.twitter.university.android.yamba.timeline.permission.READ";
     public static final String PERMISSION_WRITE
-        = "com.twitter.university.android.yamba.yamba.permission.WRITE";
+        = "com.twitter.university.android.yamba.timeline.permission.WRITE";
 
     public static class Timeline {
         private Timeline() { }
 
-        public static final String TABLE = "yamba";
+        public static final String TABLE = "timeline";
 
         public static final Uri URI = BASE_URI.buildUpon().appendPath(TABLE).build();
 
@@ -90,7 +90,6 @@ public class YambaContract {
             = ContentResolver.CURSOR_DIR_BASE_TYPE + MINOR_TYPE;
 
         public static class Columns {
-            // select rowid as _id, ...
             public static final String ID = BaseColumns._ID;
             public static final String HANDLE = "handle";
             public static final String TWEET = "tweet";
